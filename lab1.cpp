@@ -1,9 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip>
-#include <algorithm> // for std::sort
-
-using namespace std;
+#include <algorithm> 
 
 class Array {
 public:
@@ -56,10 +54,10 @@ public:
 
     void show() {
         for (int i = 0; i < Count; i++) {
-            cout.precision(3);
-            cout << fixed << ptr[i] << " ";
+            std::cout.precision(3);
+            std::cout << std::fixed << ptr[i] << " ";
         }
-        cout << '\n';
+        std::cout << '\n';
     }
 
     void sort(bool ascending = true);
@@ -141,25 +139,25 @@ const double& Array::operator[](size_type index) const {
 
 void Array::sort(bool ascending) {
     if (ascending)
-        sort(ptr, ptr + Count);
+        std::sort(ptr, ptr + Count);
     else
-        sort(ptr, ptr + Count, greater<double>());
+        std::sort(ptr, ptr + Count, std::greater<double>());
 }
 
 int main() {
     int size, c = 1;
     double elem, sum = 0, aver = 0;
 
-    cin >> size;
+    std::cin >> size;
 
     Array arr(size);
 
     for (int i = 0; i < size; i++) {
-        cin >> elem;
+        std::cin >> elem;
         arr.push_back(elem);
     }
 
-    cout << arr.size() << '\n';
+    std::cout << arr.size() << '\n';
     arr.show();
 
     sum = summary(arr);
@@ -175,16 +173,16 @@ int main() {
     arr.show();
 
     while (true) {
-        cin >> c;
+        std::cin >> c;
 
         if (c == 0) {
             break;
         } else {
             switch (c) {
                 case 1:
-                    cin >> elem;
+                    std::cin >> elem;
                     arr.push_back(elem);
-                    cout << "+:" << arr.size() << '\n';
+                    std::cout << "+:" << arr.size() << '\n';
                     arr.show();
                     sum = summary(arr);
                     aver = average(arr);
@@ -196,7 +194,7 @@ int main() {
                     break;
                 case 2:
                     arr.pop_back();
-                    cout << "-:" << arr.size() << '\n';
+                    std::cout << "-:" << arr.size() << '\n';
                     arr.show();
                     sum = summary(arr);
                     aver = average(arr);
@@ -208,13 +206,13 @@ int main() {
                     break;
                 case 3:
                     int option;
-                    cout << "Enter 1 for ascending or 0 for descending: ";
-                    cin >> option;
+                    std::cout << "Enter 1 for ascending or 0 for descending: ";
+                    std::cin >> option;
                     if (option == 1)
                         arr.sort(true);
                     else if (option == 0)
                         arr.sort(false);
-                    cout << "Sorted array: ";
+                    std::cout << "Sorted array: ";
                     arr.show();
                     break;
             }
